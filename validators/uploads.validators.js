@@ -5,14 +5,14 @@ const { allowedCollection } = require("../helpers");
 const validatorUpdateUpload=[
     validateFile,
     check('id','It is not valid id').isMongoId(),
-    check('collection').custom(c=>allowedCollection(c,['users','products'])),
+    check('collection').custom(c=>allowedCollection(c,['equipments'])),
     validateFields
 ];
 
 
 const validatorGetFileCollectionById=[
     check('id','It is not valid id').isMongoId(),
-    check('collection').custom(c=>allowedCollection(c,['users','products'])),
+    check('collection').custom(c=>allowedCollection(c,['equipments'])),
     validateFields
 ]
 module.exports = {
