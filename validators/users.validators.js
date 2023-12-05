@@ -24,7 +24,7 @@ const validatorCreateUser = [
 const validatorDeleteUser=[
     validarJWT,
     // isAdminRole,
-    hasRole('ADMIN_ROLE'),
+    hasRole('ADMIN'),
     check('id','It is not valid id').isMongoId(),
     check('id').custom(existUserById),
     validateFields
