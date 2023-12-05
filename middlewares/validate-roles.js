@@ -1,18 +1,3 @@
-const isAdminRole = (req,res,next)=>{
-    if(!req.user){
-        return res.status(500).json({
-            msg:'you want to verify the role without validating the token'
-        })
-    }
-    const {role,name} = req.user;
-    if(role !== 'ADMIN_ROLE'){
-        return res.status(401).json({
-            msg:`${name} can do not this.`
-        })
-    }
-    next();
-
-}
 const hasRole = (...roles)=>{
     return (req,res,next)=>{
         if(!req.user){
@@ -30,6 +15,5 @@ const hasRole = (...roles)=>{
     }
 }
 module.exports= {
-    isAdminRole,
     hasRole
 }
