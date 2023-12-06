@@ -19,7 +19,7 @@ const socketController = async(socket,io)=>{
    
    notificationsUsers.sendNotifications(payload);
    notificationsUsers.usersArr.forEach(user=>{
-    socket.to(user.id).emit('receive-notification',notificationsUsers.ultimos10);
+    socket.to(user.id).emit('receive-notification',payload);
    })
  
   })
