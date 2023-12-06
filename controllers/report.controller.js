@@ -1,11 +1,10 @@
 const {Report} = require('../models')
 const reportGet = async(req,res)=>{
-    const {limit=5,offset=0} = req.query;
     const [total,reports] = await Promise.all([
         Report.countDocuments(),
         Report.find()
-        .skip(Number(offset))
-        .limit(Number(limit))
+        .populate('userId')
+        .populate('equipmentId')
     ])
     res.json({
         total,
@@ -30,8 +29,8 @@ const reportPost = async (req,res)=>{
 
 const reportPut = async(req,res)=>{
     const id = req.params.id;
-    const {description}= req.body;
-    const report = await Report.findByIdAndUpdate(id,{description});
+    const {description,equipmentId}= req.body;
+    const report = await Report.findByIdAndUpdate(id,{description,equipmentId});
     res.json({
         report
     })
